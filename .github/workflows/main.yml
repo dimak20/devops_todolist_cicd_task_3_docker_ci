@@ -77,4 +77,5 @@ jobs:
         with:
           push: true
           context: ./src
+          file: ./src/Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DockerImageName }}:${{ github.sha }}
