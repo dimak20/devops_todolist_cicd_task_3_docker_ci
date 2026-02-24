@@ -59,9 +59,6 @@ jobs:
   docker-ci:
     needs: ["python-ci"]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./src
     if: github.ref_name == 'main'
     steps:
       - uses: actions/download-artifact@v4
@@ -79,6 +76,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          context: .
-          file: ./Dockerfile
+          context: ./src
+          file: ./src/Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DockerImageName }}:${{ github.sha }}
